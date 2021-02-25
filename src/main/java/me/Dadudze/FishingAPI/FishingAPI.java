@@ -41,7 +41,6 @@ public class FishingAPI extends JavaPlugin implements Listener {
                 e.getCaught().setCustomName(is.getItemMeta().getDisplayName());
                 e.getCaught().setCustomNameVisible(true);
             }
-            System.out.println(345345);
             Bukkit.getPluginManager().callEvent(new FishSwapEvent(swap, e.getCaught(), e.getPlayer(), random));
             swap = null;
         }
