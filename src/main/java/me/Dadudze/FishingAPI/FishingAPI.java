@@ -2,12 +2,14 @@ package me.Dadudze.FishingAPI;
 
 import net.minecraft.server.v1_8_R3.WeightedRandom;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftFish;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftItem;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.FishHook;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerFishEvent;
@@ -25,20 +27,11 @@ public class FishingAPI extends JavaPlugin implements Listener {
 
     @Override
     public void onEnable() {
-        results.add(new FishingResult(new ItemStack(Material.OBSIDIAN), 10));
-        results.add(new SimpleEntityFishingResult(EntityType.ZOMBIE, 20));
-        results.add(new SimpleEntityFishingResult(EntityType.SQUID, 20));
         Bukkit.getPluginManager().registerEvents(this, this);
     }
 
     @EventHandler
     public void onSpawn(PlayerFishEvent e) {
-        if(e.getState().equals(PlayerFishEvent.State.FISHING)) {
-            FishingHookEntity hook = getHook(e.getHook());
-            hook.setCatchTimeInWater(20);
-            hook.setSwimTimeInWater(10);
-            hook.setReelOutTimeInWater(2000);
-        }
         if(!results.isEmpty() && e.getState().equals(PlayerFishEvent.State.CAUGHT_FISH)) {
             Random random = new Random();
             FishingResult fishingResult = WeightedRandom.a(random, results);
@@ -48,6 +41,7 @@ public class FishingAPI extends JavaPlugin implements Listener {
                 e.getCaught().setCustomName(is.getItemMeta().getDisplayName());
                 e.getCaught().setCustomNameVisible(true);
             }
+            System.out.println(345345);
             Bukkit.getPluginManager().callEvent(new FishSwapEvent(swap, e.getCaught(), e.getPlayer(), random));
             swap = null;
         }
