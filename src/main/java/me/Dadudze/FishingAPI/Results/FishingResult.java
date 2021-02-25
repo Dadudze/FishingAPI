@@ -1,4 +1,4 @@
-package me.Dadudze.FishingAPI;
+package me.Dadudze.FishingAPI.Results;
 
 import net.minecraft.server.v1_8_R3.EnchantmentManager;
 import net.minecraft.server.v1_8_R3.WeightedRandom;

@@ -1,4 +1,4 @@
-package me.Dadudze.FishingAPI;
+package me.Dadudze.FishingAPI.Results;
 
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
